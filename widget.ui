@@ -1,0 +1,2206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1464</width>
+    <height>1003</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Widget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/*RadioButton样式设置*/
+QRadioButton::indicator { 
+    width: 17px;
+    height: 17px;
+}
+/*单选框未选中样式*/
+QRadioButton::indicator::unchecked {
+    color:gray; 
+    image: url(:/new/prefix1/uncheck.png);
+}
+/*单选框选中样式*/
+QRadioButton::indicator::checked { 
+    color:green;
+    image:url(:/new/prefix1/check.png);
+}
+/*RadioButton和checkbox字体和间距设置*/
+QRadioButton ,QCheckBox{
+    spacing: 5px;
+    font-size: 15px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_12">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>220</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>转向控制</string>
+         </property>
+         <widget class="QGroupBox" name="groupBox_15">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>571</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>模式设置</string>
+          </property>
+          <widget class="QPushButton" name="turning_ctl_mode_btn">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>待机模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="turning_trl_auto">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动驾驶模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="turin_ctl_eps">
+           <property name="geometry">
+            <rect>
+             <x>230</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>EPS模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="turning_ctl_clear">
+           <property name="geometry">
+            <rect>
+             <x>460</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动测试模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="turning_ctl_manu">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>手工介入恢复</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>90</y>
+            <width>681</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>转向角度控制</string>
+          </property>
+          <widget class="QSlider" name="trunning_angle_slider">
+           <property name="geometry">
+            <rect>
+             <x>70</x>
+             <y>20</y>
+             <width>481</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_angle_sub1">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_angle_sub100">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>——</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_angle_add100">
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>++</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_angle_add1">
+           <property name="geometry">
+            <rect>
+             <x>550</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="trunning_angle_edit">
+           <property name="geometry">
+            <rect>
+             <x>610</x>
+             <y>30</y>
+             <width>61</width>
+             <height>23</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>150</y>
+            <width>451</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>转向速度控制</string>
+          </property>
+          <widget class="QSlider" name="trunning_speed_slider">
+           <property name="geometry">
+            <rect>
+             <x>70</x>
+             <y>20</y>
+             <width>201</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_speed_sub1">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_speed_sub100">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>--</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_speed_add100">
+           <property name="geometry">
+            <rect>
+             <x>300</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>++</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="trunning_speed_add1">
+           <property name="geometry">
+            <rect>
+             <x>270</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="trunning_speed_edit">
+           <property name="geometry">
+            <rect>
+             <x>330</x>
+             <y>30</y>
+             <width>61</width>
+             <height>23</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QPushButton" name="steering_cali_cmd">
+          <property name="geometry">
+           <rect>
+            <x>490</x>
+            <y>170</y>
+            <width>75</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>转向校准</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="encoder_o_zero">
+          <property name="geometry">
+           <rect>
+            <x>580</x>
+            <y>180</y>
+            <width>61</width>
+            <height>21</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_8">
+          <property name="geometry">
+           <rect>
+            <x>580</x>
+            <y>160</y>
+            <width>54</width>
+            <height>12</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>当前零点：</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>油门控制</string>
+         </property>
+         <widget class="QGroupBox" name="groupBox_14">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>30</y>
+            <width>571</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>模式设置</string>
+          </property>
+          <widget class="QPushButton" name="accel_mode_crl">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>待机模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accel_auto_mode">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动驾驶模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accel_ecu_mode">
+           <property name="geometry">
+            <rect>
+             <x>230</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>ECU模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accel_clear">
+           <property name="geometry">
+            <rect>
+             <x>460</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动测试模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accel_manu_mode">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>手工介入恢复</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>100</y>
+            <width>451</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>设置油门</string>
+          </property>
+          <widget class="QSlider" name="accelerator_slider">
+           <property name="geometry">
+            <rect>
+             <x>70</x>
+             <y>20</y>
+             <width>201</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accelerator_sub1">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accelerator_sub10">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>————</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accelerator_add10">
+           <property name="geometry">
+            <rect>
+             <x>300</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>++</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="accelerator_add1">
+           <property name="geometry">
+            <rect>
+             <x>270</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="accelerator_edit">
+           <property name="geometry">
+            <rect>
+             <x>330</x>
+             <y>30</y>
+             <width>61</width>
+             <height>23</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="horizontalLayoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>170</y>
+            <width>591</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QRadioButton" name="steering_auto_mode_radio_Btn">
+             <property name="text">
+              <string>自动驾驶模式</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="steering_ecu_mode_radio_btn">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>ECU模式</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="steering_standy_mode_radio_btn">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>待机模式</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="steering_manu_recovery_mode_radio_btn">
+             <property name="text">
+              <string>人工介入恢复模式</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="steering_auto_test_mode_radio_btn">
+             <property name="text">
+              <string>自动测试模式</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>180</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>153</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>制动控制</string>
+         </property>
+         <widget class="QGroupBox" name="groupBox_16">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>571</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>模式设置</string>
+          </property>
+          <widget class="QPushButton" name="brake_standby_mode">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>待机模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_auto_mode">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动驾驶模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_ebs_mode">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>EBS模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_clear_mode">
+           <property name="geometry">
+            <rect>
+             <x>460</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>清除故障</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_manu_mode">
+           <property name="geometry">
+            <rect>
+             <x>350</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>手工介入恢复</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>90</y>
+            <width>451</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>设置制动值</string>
+          </property>
+          <widget class="QSlider" name="brake_slider">
+           <property name="geometry">
+            <rect>
+             <x>70</x>
+             <y>20</y>
+             <width>201</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_sub1">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_sub10">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>--</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_add10">
+           <property name="geometry">
+            <rect>
+             <x>300</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>++</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="brake_add1">
+           <property name="geometry">
+            <rect>
+             <x>270</x>
+             <y>30</y>
+             <width>31</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="brake_edit">
+           <property name="geometry">
+            <rect>
+             <x>330</x>
+             <y>30</y>
+             <width>61</width>
+             <height>23</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QGroupBox" name="groupBox_10">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>150</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>挡位控制</string>
+         </property>
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>90</y>
+            <width>581</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <widget class="QPushButton" name="set_grear_parking">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>10</y>
+             <width>81</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>停车档</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="set_grear_reverse">
+           <property name="geometry">
+            <rect>
+             <x>100</x>
+             <y>10</y>
+             <width>81</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>倒车档</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="set_gear_neutral">
+           <property name="geometry">
+            <rect>
+             <x>200</x>
+             <y>10</y>
+             <width>81</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>空档</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="set_gear_forward">
+           <property name="geometry">
+            <rect>
+             <x>290</x>
+             <y>10</y>
+             <width>91</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>前进档</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="set_gear_low">
+           <property name="geometry">
+            <rect>
+             <x>390</x>
+             <y>10</y>
+             <width>81</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>低速档</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="gear_clear">
+           <property name="geometry">
+            <rect>
+             <x>480</x>
+             <y>10</y>
+             <width>91</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>清除挡位</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_17">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>571</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>模式设置</string>
+          </property>
+          <widget class="QPushButton" name="gear_standby_mode">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>待机模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="gear_auto_mode">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动驾驶模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="gear_crl_mode">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>挡位控制模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="gear_clear_mode">
+           <property name="geometry">
+            <rect>
+             <x>460</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>清除故障</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="gear_manu_mode">
+           <property name="geometry">
+            <rect>
+             <x>350</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>手工介入恢复</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <widget class="QGroupBox" name="groupBox_12">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>160</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>灯光控制</string>
+         </property>
+         <widget class="QGroupBox" name="groupBox_19">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>571</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>模式设置</string>
+          </property>
+          <widget class="QPushButton" name="light_standby_mode">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>待机模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="light_auto_mode">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动驾驶模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="light_ctl_mode">
+           <property name="geometry">
+            <rect>
+             <x>230</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>灯光控制模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="light_clear">
+           <property name="geometry">
+            <rect>
+             <x>450</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>清除故障</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="light_manu_mode">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>手工介入恢复</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QPushButton" name="set_open_left_light">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>90</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开左转向灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_open_right_light">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>130</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开右转向灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_open_low_beam_light">
+          <property name="geometry">
+           <rect>
+            <x>130</x>
+            <y>90</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开近光灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_open_hight_beam_light">
+          <property name="geometry">
+           <rect>
+            <x>130</x>
+            <y>130</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开远光灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_open_warning_light">
+          <property name="geometry">
+           <rect>
+            <x>350</x>
+            <y>90</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开警示灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_open_front_fog_light">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>90</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开前雾灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_open_rear_fog_light">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>130</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开后雾灯</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_close_all_lights">
+          <property name="geometry">
+           <rect>
+            <x>350</x>
+            <y>130</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>关闭所有灯光</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="horntest">
+          <property name="geometry">
+           <rect>
+            <x>460</x>
+            <y>90</y>
+            <width>81</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>喇叭测试</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="title">
+          <string>驻车控制</string>
+         </property>
+         <widget class="QGroupBox" name="groupBox_18">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>571</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>模式设置</string>
+          </property>
+          <widget class="QPushButton" name="parking_standby_mode">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>待机模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="parking_auto_mode">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>自动驾驶模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="parking_crl_mode">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>驻车控制模式</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="parking_clear">
+           <property name="geometry">
+            <rect>
+             <x>460</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>清除故障</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="parking_manu_mode">
+           <property name="geometry">
+            <rect>
+             <x>350</x>
+             <y>20</y>
+             <width>101</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>手工介入恢复</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QPushButton" name="set_open_parking">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>80</y>
+            <width>111</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>打开驻车</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_all_ennter_auto">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>111</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>一键进入自动模式</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_all_clear_manu_error">
+          <property name="geometry">
+           <rect>
+            <x>260</x>
+            <y>120</y>
+            <width>121</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>一键清除人工干预</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="set_all_enter_mode2">
+          <property name="geometry">
+           <rect>
+            <x>140</x>
+            <y>120</y>
+            <width>111</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>一键进入模式2</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="error_coder">
+          <property name="geometry">
+           <rect>
+            <x>470</x>
+            <y>130</y>
+            <width>71</width>
+            <height>20</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_9">
+          <property name="geometry">
+           <rect>
+            <x>410</x>
+            <y>130</y>
+            <width>54</width>
+            <height>12</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>错误代码：</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <widget class="QGroupBox" name="groupBox_9">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>150</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>转向反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_26">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前模式值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="turning_feedback_mode">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_27">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>反馈转向值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="truning_feedback_crtl_value">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_21">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>油门反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_28">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前模式值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="accel_feedback_mode">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_29">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>反馈油门值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="accel_feedback_ctrl_value">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_22">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>刹车反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_30">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前模式值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="brake_feedback_mode">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="grupbox1">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>反馈制动值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="brake_feedback_crtl_value">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_23">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>挡位反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_32">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_13">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前模式值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="gear_feedback_mode">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_33">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>反馈挡位值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="gear_feedback_crtl_value">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_25">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>灯光反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_36">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_17">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前模式值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="light_feedback_mode">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_37">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_19">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>反馈灯光值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="light_feedback_crtl_value">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_24">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>驻车反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_34">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前模式值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="parking_feedback_mode">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_35">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>反馈驻车值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="parking_feedbakc_crtl_value">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_31">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>系统信息反馈</string>
+       </property>
+       <widget class="QGroupBox" name="groupBox_40">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_22">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前电压值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="system_data_vol_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_41">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QLabel" name="label_23">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>当前速度值:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="system_data_speed_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_37">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="text">
+        <string>端口号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="PortNumber_5">
+       <item>
+        <property name="text">
+         <string>无</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_38">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>波特率：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="baudBox_5">
+       <item>
+        <property name="text">
+         <string>115200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>38400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>9600</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_39">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>数据位：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="DataBitsBox_5">
+       <item>
+        <property name="text">
+         <string>8</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>7</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_40">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>停止位：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="StopBitsBox_5">
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_41">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>校验位：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="ParityBox_5">
+       <item>
+        <property name="text">
+         <string>无</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>偶校验</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>奇校验</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="StartOrStopButton_5">
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(85, 170, 255)</string>
+       </property>
+       <property name="text">
+        <string>打开串口</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.agx-robot.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#cccccc;&quot;&gt;WWW.AGILEX.AI&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Arial&quot;;</string>
+       </property>
+       <property name="text">
+        <string>USB线为连接</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/new/prefix1/logo_m.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
