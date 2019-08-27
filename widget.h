@@ -14,6 +14,16 @@
 
 class switch_button;
 
+enum
+{
+   SteeringMoudule_e = 0,
+   DrivingMoudule_e,
+   BrakingMoudule_e,
+   ParkingingMoudule_e,
+   LightModule_e,
+   GearModule_e,
+};
+
 namespace Ui {
 class Widget;
 }
@@ -46,58 +56,24 @@ private:
     QButtonGroup *gear_mode_btn_grp;
     QButtonGroup *lighting_mode_btn_grp;
     QButtonGroup *parking_mode_btn_grp;
+    bool key_ctrl_enable ;
 
     int  ScanfSerialPort();
     void enable_button(bool enable);
-    void Init_UI();
-
-    void set_steering_mode_style_sheet(QString stye1,QString stye2,QString stye3,QString stye4,QString stye5);
-    void set_accel_mode_style_sheet(QString stye1,QString stye2,QString stye3,QString stye4,QString stye5);
-    void set_brake_mode_style_sheet(QString stye1,QString stye2,QString stye3,QString stye4,QString stye5);
-    void set_gear_mode_style_sheet(QString stye1,QString stye2,QString stye3,QString stye4,QString stye5);
-    void set_light_mode_style_sheet(QString stye1,QString stye2,QString stye3,QString stye4,QString stye5);
-    void set_parking_mode_style_sheet(QString stye1,QString stye2,QString stye3,QString stye4,QString stye5);
 private slots:
 
     void Dispaly_FeedBack();
 
-    void on_turning_ctl_mode_btn_clicked();
-    void on_turning_trl_auto_clicked();
-    void on_turin_ctl_eps_clicked();
-    void on_turning_ctl_manu_clicked();
-    void on_turning_ctl_clear_clicked();
-    void on_accel_mode_crl_clicked();
-    void on_accel_auto_mode_clicked();
-    void on_accel_ecu_mode_clicked();
-    void on_accel_manu_mode_clicked();
-    void on_accel_clear_clicked();
-    void on_brake_standby_mode_clicked();
-    void on_brake_auto_mode_clicked();
-    void on_brake_ebs_mode_clicked();
-    void on_brake_manu_mode_clicked();
-    void on_brake_clear_mode_clicked();
-    void on_gear_standby_mode_clicked();
-    void on_gear_auto_mode_clicked();
-    void on_gear_crl_mode_clicked();
-    void on_gear_manu_mode_clicked();
-    void on_gear_clear_mode_clicked();
-    void on_light_standby_mode_clicked();
-    void on_light_auto_mode_clicked();
-    void on_light_ctl_mode_clicked();
-    void on_light_manu_mode_clicked();
-    void on_light_clear_clicked();
-    void on_parking_standby_mode_clicked();
-    void on_parking_auto_mode_clicked();
-    void on_parking_crl_mode_clicked();
-    void on_parking_manu_mode_clicked();
-    void on_parking_clear_clicked();
+
     void on_StartOrStopButton_5_clicked();
+
     void on_set_grear_parking_clicked();
     void on_set_grear_reverse_clicked();
     void on_set_gear_neutral_clicked();
     void on_set_gear_forward_clicked();
     void on_set_gear_low_clicked();
     void on_gear_clear_clicked();
+
     void on_set_open_left_light_clicked();
     void on_set_open_low_beam_light_clicked();
     void on_set_open_front_fog_light_clicked();
@@ -146,8 +122,22 @@ private slots:
     void on_set_all_clear_manu_error_clicked();
     void on_set_all_enter_mode2_clicked();
 
+    void SteeringModeChange(QAbstractButton*);
     void DrivingModeChange(QAbstractButton*);
+    void BrakingModeChange(QAbstractButton*);
+    void LightModeChange(QAbstractButton*);
+    void ParkingModeChange(QAbstractButton*);
+    void GearModeChange(QAbstractButton*);
+
     void on_horntest_clicked();
+
+    void AccordingFeedbackSetRadioMode(uint8_t mode,uint8_t module);
+
+    void on_keyCtrlEnable_btn_clicked();
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 };
 
 #endif // WIDGET_H

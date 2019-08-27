@@ -7,10 +7,10 @@
 
 /*设置不同功能按键的样式表*/
 QString open_button_style = "QPushButton{background-color:green;\
-                                   color: white;   border-radius: 5px;  border: 2px groove gray;\
+                                   color: white;   border-radius: 2px;  border: 1px groove gray;\
                                    border-style: outset;}";
 QString close_button_style = "QPushButton{background-color:red;\
-                             color: white;   border-radius: 5px;  border: 2px groove gray;\
+                             color: white;   border-radius: 2px;  border: 1px groove gray;\
                              border-style: outset;}";
 
                                  //  "QPushButton:hover{background-color:white; color: black;}"\
@@ -18,7 +18,7 @@ QString close_button_style = "QPushButton{background-color:red;\
                                      border-style: inset; }";
 
  QString set_button_style = "QPushButton{background-color:green;\
-                              color: white;   border-radius: 5px;  border: 2px groove gray;\
+                              color: white;   border-radius: 2px;  border: 1px groove gray;\
                               border-style: outset;}"\
                               "QPushButton:hover{background-color:white; color: black;}"\
                               "QPushButton:pressed{background-color:rgb(85, 170, 255);\
@@ -34,6 +34,14 @@ QString close_button_style = "QPushButton{background-color:red;\
                                }";
 
 
+ //led label 样式表
+ const QString m_red_SheetStyle = "min-width: 16px; min-height: 16px;max-width:16px; max-height: 16px;border-radius: 8px;  border:1px solid red;background:red";
+
+ const QString m_green_SheetStyle = "min-width: 16px; min-height: 16px;max-width:16px; max-height: 16px;border-radius: 8px;  border:1px solid green;background:green";
+
+ const QString m_grey_SheetStyle = "min-width: 16px; min-height: 16px;max-width:16px; max-height: 16px;border-radius: 8px;  border:1px solid gray;background:grey";
+
+ const QString m_yellow_SheetStyle = "min-width: 16px; min-height: 16px;max-width:16px; max-height: 16px;border-radius: 8px;  border:1px solid yellow;background:yellow";
 
 
 Widget::Widget(QWidget *parent) :
@@ -42,21 +50,61 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    mybutton = new switch_button(this);
-//    mybutton->setText("灯光开","灯光关");
-//    mybutton->show();
-//    mybutton->setButtonStyle(switch_button::ButtonStyle_CircleIn);
-//    mybutton->move(700,180);
-      steering_mode_btn_grp =  new QButtonGroup(this);
 
+      steering_mode_btn_grp =  new QButtonGroup(this);
       steering_mode_btn_grp->setExclusive(true);
-      steering_mode_btn_grp->addButton(ui->steering_ecu_mode_radio_btn);
+      steering_mode_btn_grp->addButton(ui->steering_eps_mode_radio_btn);
       steering_mode_btn_grp->addButton(ui->steering_auto_mode_radio_Btn);
-      steering_mode_btn_grp->addButton(ui->steering_standy_mode_radio_btn);
+      steering_mode_btn_grp->addButton(ui->steering_standby_mode_radio_btn);
       steering_mode_btn_grp->addButton(ui->steering_auto_test_mode_radio_btn);
       steering_mode_btn_grp->addButton(ui->steering_manu_recovery_mode_radio_btn);
-     ui->steering_standy_mode_radio_btn->setChecked(true);
-      connect(steering_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(DrivingModeChange(QAbstractButton*)));
+      connect(steering_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(SteeringModeChange(QAbstractButton*)));
+
+
+      driving_mode_btn_grp =  new QButtonGroup(this);
+      driving_mode_btn_grp->setExclusive(true);
+      driving_mode_btn_grp->addButton(ui->driving_ecu_mode_radio_btn);
+      driving_mode_btn_grp->addButton(ui->driving_auto_mode_radio_Btn_2);
+      driving_mode_btn_grp->addButton(ui->driving_auto_test_mode_radio_btn);
+      driving_mode_btn_grp->addButton(ui->driving_standby_mode_radio_btn_2);
+      driving_mode_btn_grp->addButton(ui->driving_manu_recovery_mode_radio_btn);
+      connect(driving_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(DrivingModeChange(QAbstractButton*)));
+
+      braking_mode_btn_grp =  new QButtonGroup(this);
+      braking_mode_btn_grp->setExclusive(true);
+      braking_mode_btn_grp->addButton(ui->braking_eps_mode_radio_btn_2);
+      braking_mode_btn_grp->addButton(ui->braking_auto_mode_radio_Btn_2);
+      braking_mode_btn_grp->addButton(ui->braking_standby_mode_radio_btn_2);
+      braking_mode_btn_grp->addButton(ui->braking_auto_test_mode_radio_btn_2);
+      braking_mode_btn_grp->addButton(ui->braking_manu_recovery_mode_radio_btn_2);
+      connect(braking_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(BrakingModeChange(QAbstractButton*)));
+
+      gear_mode_btn_grp =  new QButtonGroup(this);
+      gear_mode_btn_grp->setExclusive(true);
+      gear_mode_btn_grp->addButton(ui->gear_eps_mode_radio_btn_3);
+      gear_mode_btn_grp->addButton(ui->gear_auto_mode_radio_Btn_3);
+      gear_mode_btn_grp->addButton(ui->gear_standby_mode_radio_btn_3);
+      gear_mode_btn_grp->addButton(ui->gear_auto_test_mode_radio_btn_3);
+      gear_mode_btn_grp->addButton(ui->gear_manu_recovery_mode_radio_btn_3);
+      connect(gear_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(GearModeChange(QAbstractButton*)));
+
+      lighting_mode_btn_grp =  new QButtonGroup(this);
+      lighting_mode_btn_grp->setExclusive(true);
+      lighting_mode_btn_grp->addButton(ui->light_eps_mode_radio_btn_3);
+      lighting_mode_btn_grp->addButton(ui->light_auto_mode_radio_Btn_3);
+      lighting_mode_btn_grp->addButton(ui->light_standby_mode_radio_btn_3);
+      lighting_mode_btn_grp->addButton(ui->light_auto_test_mode_radio_btn_3);
+      lighting_mode_btn_grp->addButton(ui->light_manu_recovery_mode_radio_btn_3);
+      connect(lighting_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(LightModeChange(QAbstractButton*)));
+
+      parking_mode_btn_grp =  new QButtonGroup(this);
+      parking_mode_btn_grp->setExclusive(true);
+      parking_mode_btn_grp->addButton(ui->parking_eps_mode_radio_btn_4);
+      parking_mode_btn_grp->addButton(ui->parking_auto_mode_radio_Btn_4);
+      parking_mode_btn_grp->addButton(ui->parking_standby_mode_radio_btn_4);
+      parking_mode_btn_grp->addButton(ui->parking_auto_test_mode_radio_btn_4);
+      parking_mode_btn_grp->addButton(ui->parking_manu_recovery_mode_radio_btn_4);
+      connect(parking_mode_btn_grp,SIGNAL(buttonClicked(QAbstractButton*)),this,SLOT(ParkingModeChange(QAbstractButton*)));
 
     timer = new QTimer(this);//创建一个定时器
     connect(timer,&QTimer::timeout,this,&Widget::ScanfSerialPort);//信号连接
@@ -71,7 +119,7 @@ Widget::Widget(QWidget *parent) :
 
     check_connect_timer = new QTimer(this);//创建一个定时器
     connect(check_connect_timer,&QTimer::timeout,this,&Widget::CheckConnectStatus);//信号连接
-     check_connect_timer->start(100);
+    check_connect_timer->start(100);
 
     qApp->setStyle(QStyleFactory::create("Fusion"));
     QPalette palette;
@@ -138,10 +186,8 @@ Widget::Widget(QWidget *parent) :
    connect(ui->brake_slider,SIGNAL(valueChanged(int)),this,SLOT(SlideChangeBrake(int)));
 
 
- // connect(ui->horntest,&QPushButton::clicked,this,&Widget::on_horn_test_click);
-
    ui->trunning_angle_slider->setRange(-2666,2666);
-   ui->trunning_speed_slider->setRange(0,35);
+   ui->trunning_speed_slider->setRange(0,30);
    ui->accelerator_slider->setRange(0,100);
    ui->brake_slider->setRange(0,100);
 
@@ -156,46 +202,6 @@ Widget::Widget(QWidget *parent) :
    ui->brake_edit->setText("0");
 
    enable_button(false);
-
-   ui->turning_ctl_clear->setStyleSheet(mode_deselect);
-   ui->turning_ctl_manu->setStyleSheet(mode_deselect);
-   ui->turning_ctl_mode_btn->setStyleSheet(mode_deselect);
-   ui->turning_trl_auto->setStyleSheet(mode_deselect);
-   ui->turin_ctl_eps->setStyleSheet(mode_select);
-
-
-   ui->accel_auto_mode->setStyleSheet(mode_deselect);
-   ui->accel_clear->setStyleSheet(mode_deselect);
-   ui->accel_ecu_mode->setStyleSheet(mode_select);
-   ui->accel_manu_mode->setStyleSheet(mode_deselect);
-   ui->accel_mode_crl->setStyleSheet(mode_deselect);
-
-
-   ui->gear_auto_mode->setStyleSheet(mode_deselect);
-   ui->gear_clear_mode->setStyleSheet(mode_deselect);
-   ui->gear_crl_mode->setStyleSheet(mode_select);
-   ui->gear_manu_mode->setStyleSheet(mode_deselect);
-   ui->gear_standby_mode->setStyleSheet(mode_deselect);
-
-
-   ui->parking_auto_mode->setStyleSheet(mode_deselect);
-   ui->parking_clear->setStyleSheet(mode_deselect);
-   ui->parking_crl_mode->setStyleSheet(mode_select);
-   ui->parking_manu_mode->setStyleSheet(mode_deselect);
-   ui->parking_standby_mode->setStyleSheet(mode_deselect);
-
-   ui->light_auto_mode->setStyleSheet(mode_deselect);
-   ui->light_standby_mode->setStyleSheet(mode_deselect);
-   ui->light_clear->setStyleSheet(mode_deselect);
-   ui->light_ctl_mode->setStyleSheet(mode_select);
-   ui->light_manu_mode->setStyleSheet(mode_deselect);
-
-   ui->brake_auto_mode->setStyleSheet(mode_deselect);
-   ui->brake_clear_mode->setStyleSheet(mode_deselect);
-   ui->brake_ebs_mode->setStyleSheet(mode_select);
-   ui->brake_manu_mode->setStyleSheet(mode_deselect);
-   ui->brake_standby_mode->setStyleSheet(mode_deselect);
-
 
    ui->horntest->setStyleSheet(set_button_style);
 
@@ -216,24 +222,24 @@ Widget::Widget(QWidget *parent) :
    ui->set_open_warning_light->setText(tr("打开警示灯"));
    ui->set_open_warning_light->setStyleSheet(open_button_style);
 
-   ui->set_open_front_fog_light->setText(tr("打开前雾灯"));
-   ui->set_open_front_fog_light->setStyleSheet(open_button_style);
+ //  ui->set_open_front_fog_light->setText(tr("打开前雾灯"));
+  // ui->set_open_front_fog_light->setStyleSheet(open_button_style);
 
    ui->set_open_rear_fog_light->setText(tr("打开后雾灯"));
    ui->set_open_rear_fog_light->setStyleSheet(open_button_style);
 
    ui->set_close_all_lights->setText(tr("关闭所有灯光"));
-   ui->set_close_all_lights->setStyleSheet(close_button_style);
+   ui->set_close_all_lights->setStyleSheet(set_button_style);
 
    ui->set_open_parking->setText(tr("打开驻车"));
    ui->set_open_parking->setStyleSheet(open_button_style);
 
-   ui->set_gear_forward->setStyleSheet(close_button_style);
-   ui->set_gear_low->setStyleSheet(close_button_style);
-   ui->set_gear_neutral->setStyleSheet(close_button_style);
-   ui->set_grear_parking->setStyleSheet(close_button_style);
-   ui->set_grear_reverse->setStyleSheet(close_button_style);
-   ui->gear_clear->setStyleSheet(close_button_style);
+   ui->set_gear_forward->setStyleSheet(open_button_style);
+   ui->set_gear_low->setStyleSheet(open_button_style);
+   ui->set_gear_neutral->setStyleSheet(open_button_style);
+   ui->set_grear_parking->setStyleSheet(open_button_style);
+   ui->set_grear_reverse->setStyleSheet(open_button_style);
+   ui->gear_clear->setStyleSheet(set_button_style);
 
    ui->label_6->openExternalLinks();
    ui->label_5->setStyleSheet("color:red;font: 12pt Arial;");
@@ -243,8 +249,14 @@ Widget::Widget(QWidget *parent) :
    ui->set_all_enter_mode2->setStyleSheet(set_button_style);
 
    ui->steering_cali_cmd->setStyleSheet(set_button_style);
-     ui->encoder_o_zero->setEnabled(false);
-     ui->error_coder->setEnabled(false);
+   ui->encoder_o_zero->setEnabled(false);
+
+   key_ctrl_enable = false;
+   ui->keyCtrlEnable_btn->setStyleSheet(open_button_style);
+
+   setFocus();
+
+
 }
 
 Widget::~Widget()
@@ -263,6 +275,7 @@ int Widget::ScanfSerialPort()
          serila_num_curr = 0;
          ui->StartOrStopButton_5->setEnabled(false);
          enable_button(false);
+         memset(&transmission->feedbackdata,0,sizeof (transmission->feedbackdata));
     }
     else
     {
@@ -294,7 +307,7 @@ void Widget::enable_button(bool enable)
     ui->set_open_low_beam_light->setEnabled(enable);
     ui->set_open_hight_beam_light->setEnabled(enable);
     ui->set_open_warning_light->setEnabled(enable);
-    ui->set_open_front_fog_light->setEnabled(enable);
+    //ui->set_open_front_fog_light->setEnabled(enable);
     ui->set_open_rear_fog_light->setEnabled(enable);
     ui->set_close_all_lights->setEnabled(enable);
     ui->set_close_all_lights->setEnabled(enable);
@@ -307,44 +320,44 @@ void Widget::enable_button(bool enable)
    ui->set_grear_reverse->setEnabled(enable);
    ui->gear_clear->setEnabled(enable);
 
-   ui->turning_ctl_clear->setEnabled(enable);
-   ui->turning_ctl_manu->setEnabled(enable);
-   ui->turning_ctl_mode_btn->setEnabled(enable);
-   ui->turning_trl_auto->setEnabled(enable);
-   ui->turin_ctl_eps->setEnabled(enable);
+   ui->steering_eps_mode_radio_btn->setEnabled(enable);
+   ui->steering_auto_mode_radio_Btn->setEnabled(enable);
+   ui->steering_standby_mode_radio_btn->setEnabled(enable);
+   ui->steering_auto_test_mode_radio_btn->setEnabled(enable);
+   ui->steering_manu_recovery_mode_radio_btn->setEnabled(enable);
 
 
-   ui->accel_auto_mode->setEnabled(enable);
-   ui->accel_clear->setEnabled(enable);
-   ui->accel_ecu_mode->setEnabled(enable);
-   ui->accel_manu_mode->setEnabled(enable);
-   ui->accel_mode_crl->setEnabled(enable);
+   ui->driving_ecu_mode_radio_btn->setEnabled(enable);
+   ui->driving_auto_mode_radio_Btn_2->setEnabled(enable);
+   ui->driving_auto_test_mode_radio_btn->setEnabled(enable);
+   ui->driving_standby_mode_radio_btn_2->setEnabled(enable);
+   ui->driving_manu_recovery_mode_radio_btn->setEnabled(enable);
 
 
-   ui->gear_auto_mode->setEnabled(enable);
-   ui->gear_clear_mode->setEnabled(enable);
-   ui->gear_crl_mode->setEnabled(enable);
-   ui->gear_manu_mode->setEnabled(enable);
-   ui->gear_standby_mode->setEnabled(enable);
+   ui->gear_eps_mode_radio_btn_3->setEnabled(enable);
+   ui->gear_auto_mode_radio_Btn_3->setEnabled(enable);
+   ui->gear_standby_mode_radio_btn_3->setEnabled(enable);
+   ui->gear_auto_test_mode_radio_btn_3->setEnabled(enable);
+   ui->gear_manu_recovery_mode_radio_btn_3->setEnabled(enable);
 
 
-   ui->parking_auto_mode->setEnabled(enable);
-   ui->parking_clear->setEnabled(enable);
-   ui->parking_crl_mode->setEnabled(enable);
-   ui->parking_manu_mode->setEnabled(enable);
-   ui->parking_standby_mode->setEnabled(enable);
+   ui->parking_eps_mode_radio_btn_4->setEnabled(enable);
+   ui->parking_auto_mode_radio_Btn_4->setEnabled(enable);
+   ui->parking_standby_mode_radio_btn_4->setEnabled(enable);
+   ui->parking_auto_test_mode_radio_btn_4->setEnabled(enable);
+   ui->parking_manu_recovery_mode_radio_btn_4->setEnabled(enable);
 
-   ui->light_auto_mode->setEnabled(enable);
-   ui->light_standby_mode->setEnabled(enable);
-   ui->light_clear->setEnabled(enable);
-   ui->light_ctl_mode->setEnabled(enable);
-   ui->light_manu_mode->setEnabled(enable);
+   ui->light_eps_mode_radio_btn_3->setEnabled(enable);
+   ui->light_auto_mode_radio_Btn_3->setEnabled(enable);
+   ui->light_standby_mode_radio_btn_3->setEnabled(enable);
+   ui->light_auto_test_mode_radio_btn_3->setEnabled(enable);
+   ui->light_manu_recovery_mode_radio_btn_3->setEnabled(enable);
 
-   ui->brake_auto_mode->setEnabled(enable);
-   ui->brake_clear_mode->setEnabled(enable);
-   ui->brake_ebs_mode->setEnabled(enable);
-   ui->brake_manu_mode->setEnabled(enable);
-   ui->brake_standby_mode->setEnabled(enable);
+   ui->braking_eps_mode_radio_btn_2->setEnabled(enable);
+   ui->braking_auto_mode_radio_Btn_2->setEnabled(enable);
+   ui->braking_standby_mode_radio_btn_2->setEnabled(enable);
+   ui->braking_manu_recovery_mode_radio_btn_2->setEnabled(enable);
+   ui->braking_auto_test_mode_radio_btn_2->setEnabled(enable);
 
    ui->trunning_angle_slider->setEnabled(enable);
    ui->trunning_speed_slider->setEnabled(enable);
@@ -383,411 +396,146 @@ void Widget::enable_button(bool enable)
 
      ui->steering_cali_cmd->setEnabled(enable);
      ui->horntest->setEnabled(enable);
+     ui->keyCtrlEnable_btn->setEnabled(enable);
 
 }
 
-void Widget::Init_UI()
-{
-//    switch(transmission->feedbackdata.accel_mode)
-//    {
-//        case 0:
-//          break;
-//        case 1:
-//            break;
-//        case 2:
-//            break;
-//        case 3:
-//            break;
-//        case 4:
-//            break;
-
-//    }
-
-}
-
-void Widget::set_steering_mode_style_sheet(QString stye1, QString stye2, QString stye3, QString stye4, QString stye5)
-{
-    ui->turning_ctl_mode_btn->setStyleSheet(stye1);
-    ui->turning_trl_auto->setStyleSheet(stye2);
-    ui->turin_ctl_eps->setStyleSheet(stye3);
-    ui->turning_ctl_manu->setStyleSheet(stye4);
-    ui->turning_ctl_clear->setStyleSheet(stye5);
-}
-
-void Widget::set_accel_mode_style_sheet(QString stye1, QString stye2, QString stye3, QString stye4, QString stye5)
-{
-    ui->accel_auto_mode->setStyleSheet(stye2);
-    ui->accel_clear->setStyleSheet(stye5);
-    ui->accel_ecu_mode->setStyleSheet(stye3);
-    ui->accel_manu_mode->setStyleSheet(stye4);
-    ui->accel_mode_crl->setStyleSheet(stye1);
-}
-
-void Widget::set_brake_mode_style_sheet(QString stye1, QString stye2, QString stye3, QString stye4, QString stye5)
-{
-    ui->brake_auto_mode->setStyleSheet(stye2);
-    ui->brake_clear_mode->setStyleSheet(stye5);
-    ui->brake_ebs_mode->setStyleSheet(stye3);
-    ui->brake_manu_mode->setStyleSheet(stye4);
-    ui->brake_standby_mode->setStyleSheet(stye1);
-}
-
-void Widget::set_gear_mode_style_sheet(QString stye1, QString stye2, QString stye3, QString stye4, QString stye5)
-{
-    ui->gear_auto_mode->setStyleSheet(stye2);
-    ui->gear_clear_mode->setStyleSheet(stye5);
-    ui->gear_crl_mode->setStyleSheet(stye3);
-    ui->gear_manu_mode->setStyleSheet(stye4);
-    ui->gear_standby_mode->setStyleSheet(stye1);
-
-}
-
-void Widget::set_light_mode_style_sheet(QString stye1, QString stye2, QString stye3, QString stye4, QString stye5)
-{
-    ui->light_auto_mode->setStyleSheet(stye2);
-    ui->light_standby_mode->setStyleSheet(stye1);
-    ui->light_clear->setStyleSheet(stye5);
-    ui->light_ctl_mode->setStyleSheet(stye3);
-    ui->light_manu_mode->setStyleSheet(stye4);
-}
-
-void Widget::set_parking_mode_style_sheet(QString stye1, QString stye2, QString stye3, QString stye4, QString stye5)
-{
-    ui->parking_auto_mode->setStyleSheet(stye2);
-    ui->parking_clear->setStyleSheet(stye5);
-    ui->parking_crl_mode->setStyleSheet(stye3);
-    ui->parking_manu_mode->setStyleSheet(stye4);
-    ui->parking_standby_mode->setStyleSheet(stye1);
-}
 
 void Widget::Dispaly_FeedBack()
 {
-    ui->turning_feedback_mode->setText(QString::number(transmission->feedbackdata.steering_mode));
-    ui->truning_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.steering_value));
-    ui->accel_feedback_mode->setText(QString::number(transmission->feedbackdata.accel_mode));
-    ui->accel_feedback_ctrl_value->setText(QString::number(transmission->feedbackdata.accel_value));
-    ui->brake_feedback_mode->setText(QString::number(transmission->feedbackdata.brake_mode));
-    ui->brake_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.brake_value));
-    ui->gear_feedback_mode->setText(QString::number(transmission->feedbackdata.gear_mode));
-    ui->gear_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.gear_value));
-    ui->parking_feedback_mode->setText(QString::number(transmission->feedbackdata.parking_mode));
-    ui->parking_feedbakc_crtl_value->setText(QString::number(transmission->feedbackdata.parking_value));
-    ui->light_feedback_mode->setText(QString::number(transmission->feedbackdata.light_mode));
-    ui->light_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.light_value));
-    ui->system_data_vol_2->setText(QString::number(transmission->feedbackdata.battery_vol));
-    ui->system_data_speed_2->setText(QString::number((qint16)transmission->feedbackdata.car_speed));
-    ui->encoder_o_zero->setText(QString::number((quint16)transmission->feedbackdata.encoderOfzero));
-    ui->error_coder->setText(QString::number((quint16)transmission->feedbackdata.error_code));
+    if(transmission->feedbackdata.can_bus_status == 1 && transmission->connect_status == 1)
+    {
+        ui->turning_feedback_mode->setText(QString::number(transmission->feedbackdata.steering_mode));
+        ui->truning_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.steering_value));
+        ui->accel_feedback_mode->setText(QString::number(transmission->feedbackdata.accel_mode));
+        ui->accel_feedback_ctrl_value->setText(QString::number(transmission->feedbackdata.accel_value));
+        ui->brake_feedback_mode->setText(QString::number(transmission->feedbackdata.brake_mode));
+        ui->brake_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.brake_value));
+        ui->gear_feedback_mode->setText(QString::number(transmission->feedbackdata.gear_mode));
+        ui->gear_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.gear_value));
+        ui->parking_feedback_mode->setText(QString::number(transmission->feedbackdata.parking_mode));
+        ui->parking_feedbakc_crtl_value->setText(QString::number(transmission->feedbackdata.parking_value));
+        ui->light_feedback_mode->setText(QString::number(transmission->feedbackdata.light_mode));
+        ui->light_feedback_crtl_value->setText(QString::number(transmission->feedbackdata.light_value));
+        ui->system_data_vol_2->setText(QString::number(transmission->feedbackdata.battery_vol));
+        ui->system_data_speed_2->setText(QString::number((qint16)transmission->feedbackdata.car_speed));
+        ui->encoder_o_zero->setText(QString::number((quint16)transmission->feedbackdata.encoderOfzero));
+        ui->truning_feedback_speed->setText(QString::number((qint16)transmission->feedbackdata.steering_speed));
+
+//        AccordingFeedbackSetRadioMode(transmission->feedbackdata.light_mode,LightModule_e);
+//        AccordingFeedbackSetRadioMode(transmission->feedbackdata.gear_mode,GearModule_e);
+//        AccordingFeedbackSetRadioMode(transmission->feedbackdata.parking_mode,ParkingingMoudule_e);
+//        AccordingFeedbackSetRadioMode(transmission->feedbackdata.brake_mode,BrakingMoudule_e);
+//        AccordingFeedbackSetRadioMode(transmission->feedbackdata.accel_mode,DrivingMoudule_e);
+//        AccordingFeedbackSetRadioMode(transmission->feedbackdata.steering_mode,SteeringMoudule_e);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<0)) != 0)
+    {
+        ui->enpower_can_comm_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->enpower_can_comm_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<1)) != 0)
+    {
+        ui->brake_can_comm_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->brake_can_comm_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<2)) != 0)
+    {
+        ui->steering_can_comm_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->steering_can_comm_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<3)) != 0)
+    {
+        ui->parking_can_comm_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->parking_can_comm_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<4)) != 0)
+    {
+        ui->heartbeat_stop_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->heartbeat_stop_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<5)) != 0)
+    {
+        ui->brake_motor_overcurrent_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->brake_motor_overcurrent_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<6)) != 0)
+    {
+        ui->brake_zero_sersor_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->brake_zero_sersor_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<7)) != 0)
+    {
+        ui->eps_selfcheck_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->eps_selfcheck_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<8)) != 0)
+    {
+        ui->eps_encoder_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->eps_encoder_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+
+    if((transmission->feedbackdata.error_code & (1<<9)) != 0)
+    {
+        ui->eps_motor_overcurrent_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->eps_motor_overcurrent_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<10)) != 0)
+    {
+        ui->parking_motor_overcurren_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->parking_motor_overcurren_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<11)) != 0)
+    {
+        ui->manu_ctrl_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->manu_ctrl_error->setStyleSheet(m_green_SheetStyle);
+    }
+
+    if((transmission->feedbackdata.error_code & (1<<12)) != 0)
+    {
+        ui->cmd_overtime_error->setStyleSheet(m_red_SheetStyle);
+    }
+    else {
+         ui->cmd_overtime_error->setStyleSheet(m_green_SheetStyle);
+    }
 }
 
-void Widget::on_turning_ctl_mode_btn_clicked()
-{
-    ui->turning_ctl_clear->setStyleSheet(mode_deselect);
-    ui->turning_ctl_manu->setStyleSheet(mode_deselect);
-    ui->turning_ctl_mode_btn->setStyleSheet(mode_select);
-    ui->turning_trl_auto->setStyleSheet(mode_deselect);
-    ui->turin_ctl_eps->setStyleSheet(mode_deselect);
-
-     transmission->Send_cmd(0x11,0);
-}
-
-void Widget::on_turning_trl_auto_clicked()
-{
-    ui->turning_ctl_clear->setStyleSheet(mode_deselect);
-    ui->turning_ctl_manu->setStyleSheet(mode_deselect);
-    ui->turning_ctl_mode_btn->setStyleSheet(mode_deselect);
-    ui->turning_trl_auto->setStyleSheet(mode_select);
-    ui->turin_ctl_eps->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x11,1);
-}
-
-void Widget::on_turin_ctl_eps_clicked()
-{
-    ui->turning_ctl_clear->setStyleSheet(mode_deselect);
-    ui->turning_ctl_manu->setStyleSheet(mode_deselect);
-    ui->turning_ctl_mode_btn->setStyleSheet(mode_deselect);
-    ui->turning_trl_auto->setStyleSheet(mode_deselect);
-    ui->turin_ctl_eps->setStyleSheet(mode_select);
-   transmission->Send_cmd(0x11,2);
-}
-
-void Widget::on_turning_ctl_manu_clicked()
-{
-    ui->turning_ctl_clear->setStyleSheet(mode_deselect);
-    ui->turning_ctl_manu->setStyleSheet(mode_select);
-    ui->turning_ctl_mode_btn->setStyleSheet(mode_deselect);
-    ui->turning_trl_auto->setStyleSheet(mode_deselect);
-    ui->turin_ctl_eps->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x11,3);
-
-}
-
-void Widget::on_turning_ctl_clear_clicked()
-{
-    ui->turning_ctl_clear->setStyleSheet(mode_select);
-    ui->turning_ctl_manu->setStyleSheet(mode_deselect);
-    ui->turning_ctl_mode_btn->setStyleSheet(mode_deselect);
-    ui->turning_trl_auto->setStyleSheet(mode_deselect);
-    ui->turin_ctl_eps->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x11,4);
-}
-
-void Widget::on_accel_mode_crl_clicked()
-{
-    ui->accel_auto_mode->setStyleSheet(mode_deselect);
-    ui->accel_clear->setStyleSheet(mode_deselect);
-    ui->accel_ecu_mode->setStyleSheet(mode_deselect);
-    ui->accel_manu_mode->setStyleSheet(mode_deselect);
-    ui->accel_mode_crl->setStyleSheet(mode_select);
-    transmission->Send_cmd(0x21,0);
-}
-
-void Widget::on_accel_auto_mode_clicked()
-{
-    ui->accel_auto_mode->setStyleSheet(mode_select);
-    ui->accel_clear->setStyleSheet(mode_deselect);
-    ui->accel_ecu_mode->setStyleSheet(mode_deselect);
-    ui->accel_manu_mode->setStyleSheet(mode_deselect);
-    ui->accel_mode_crl->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x21,1);
-}
-
-void Widget::on_accel_ecu_mode_clicked()
-{
-    ui->accel_auto_mode->setStyleSheet(mode_deselect);
-    ui->accel_clear->setStyleSheet(mode_deselect);
-    ui->accel_ecu_mode->setStyleSheet(mode_select);
-    ui->accel_manu_mode->setStyleSheet(mode_deselect);
-    ui->accel_mode_crl->setStyleSheet(mode_deselect);
-
-  transmission->Send_cmd(0x21,2);
-}
-
-void Widget::on_accel_manu_mode_clicked()
-{
-    ui->accel_auto_mode->setStyleSheet(mode_deselect);
-    ui->accel_clear->setStyleSheet(mode_deselect);
-    ui->accel_ecu_mode->setStyleSheet(mode_deselect);
-    ui->accel_manu_mode->setStyleSheet(mode_select);
-    ui->accel_mode_crl->setStyleSheet(mode_deselect);
-
-  transmission->Send_cmd(0x21,3);
-}
-
-void Widget::on_accel_clear_clicked()
-{
-    ui->accel_auto_mode->setStyleSheet(mode_deselect);
-    ui->accel_clear->setStyleSheet(mode_select);
-    ui->accel_ecu_mode->setStyleSheet(mode_deselect);
-    ui->accel_manu_mode->setStyleSheet(mode_deselect);
-    ui->accel_mode_crl->setStyleSheet(mode_deselect);
-
-  transmission->Send_cmd(0x21,4);
-}
-
-void Widget::on_brake_standby_mode_clicked()
-{
-    ui->brake_auto_mode->setStyleSheet(mode_deselect);
-    ui->brake_clear_mode->setStyleSheet(mode_deselect);
-    ui->brake_ebs_mode->setStyleSheet(mode_deselect);
-    ui->brake_manu_mode->setStyleSheet(mode_deselect);
-    ui->brake_standby_mode->setStyleSheet(mode_select);
-    transmission->Send_cmd(0x31,0);
-}
-
-void Widget::on_brake_auto_mode_clicked()
-{
-    ui->brake_auto_mode->setStyleSheet(mode_select);
-    ui->brake_clear_mode->setStyleSheet(mode_deselect);
-    ui->brake_ebs_mode->setStyleSheet(mode_deselect);
-    ui->brake_manu_mode->setStyleSheet(mode_deselect);
-    ui->brake_standby_mode->setStyleSheet(mode_deselect);
-
-    transmission->Send_cmd(0x31,1);
-}
-
-void Widget::on_brake_ebs_mode_clicked()
-{
-    ui->brake_auto_mode->setStyleSheet(mode_deselect);
-    ui->brake_clear_mode->setStyleSheet(mode_deselect);
-    ui->brake_ebs_mode->setStyleSheet(mode_select);
-    ui->brake_manu_mode->setStyleSheet(mode_deselect);
-    ui->brake_standby_mode->setStyleSheet(mode_deselect);
-     transmission->Send_cmd(0x31,2);
-}
-
-void Widget::on_brake_manu_mode_clicked()
-{
-    ui->brake_auto_mode->setStyleSheet(mode_deselect);
-    ui->brake_clear_mode->setStyleSheet(mode_deselect);
-    ui->brake_ebs_mode->setStyleSheet(mode_deselect);
-    ui->brake_manu_mode->setStyleSheet(mode_select);
-    ui->brake_standby_mode->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x31,3);
-}
-
-void Widget::on_brake_clear_mode_clicked()
-{
-    ui->brake_auto_mode->setStyleSheet(mode_deselect);
-    ui->brake_clear_mode->setStyleSheet(mode_select);
-    ui->brake_ebs_mode->setStyleSheet(mode_deselect);
-    ui->brake_manu_mode->setStyleSheet(mode_deselect);
-    ui->brake_standby_mode->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x31,4);
-}
-
-void Widget::on_gear_standby_mode_clicked()
-{
-    ui->gear_auto_mode->setStyleSheet(mode_deselect);
-    ui->gear_clear_mode->setStyleSheet(mode_deselect);
-    ui->gear_crl_mode->setStyleSheet(mode_deselect);
-    ui->gear_manu_mode->setStyleSheet(mode_deselect);
-    ui->gear_standby_mode->setStyleSheet(mode_select);
-    transmission->Send_cmd(0x41,0);
-}
-
-void Widget::on_gear_auto_mode_clicked()
-{
-    ui->gear_auto_mode->setStyleSheet(mode_select);
-    ui->gear_clear_mode->setStyleSheet(mode_deselect);
-    ui->gear_crl_mode->setStyleSheet(mode_deselect);
-    ui->gear_manu_mode->setStyleSheet(mode_deselect);
-    ui->gear_standby_mode->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x41,1);
-}
-
-void Widget::on_gear_crl_mode_clicked()
-{
-    ui->gear_auto_mode->setStyleSheet(mode_deselect);
-    ui->gear_clear_mode->setStyleSheet(mode_deselect);
-    ui->gear_crl_mode->setStyleSheet(mode_select);
-    ui->gear_manu_mode->setStyleSheet(mode_deselect);
-    ui->gear_standby_mode->setStyleSheet(mode_deselect);
-     transmission->Send_cmd(0x41,2);
-}
-
-void Widget::on_gear_manu_mode_clicked()
-{
-    ui->gear_auto_mode->setStyleSheet(mode_deselect);
-    ui->gear_clear_mode->setStyleSheet(mode_deselect);
-    ui->gear_crl_mode->setStyleSheet(mode_deselect);
-    ui->gear_manu_mode->setStyleSheet(mode_select);
-    ui->gear_standby_mode->setStyleSheet(mode_deselect);
-  transmission->Send_cmd(0x41,3);
-}
-
-void Widget::on_gear_clear_mode_clicked()
-{
-    ui->gear_auto_mode->setStyleSheet(mode_deselect);
-    ui->gear_clear_mode->setStyleSheet(mode_select);
-    ui->gear_crl_mode->setStyleSheet(mode_deselect);
-    ui->gear_manu_mode->setStyleSheet(mode_deselect);
-    ui->gear_standby_mode->setStyleSheet(mode_deselect);
-
-
-    transmission->Send_cmd(0x41,4);
-}
-
-void Widget::on_light_standby_mode_clicked()
-{
-    ui->light_standby_mode->setStyleSheet(mode_select);
-    ui->light_clear->setStyleSheet(mode_deselect);
-    ui->light_ctl_mode->setStyleSheet(mode_deselect);
-    ui->light_manu_mode->setStyleSheet(mode_deselect);
-    ui->light_auto_mode->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x61,0);
-}
-
-void Widget::on_light_auto_mode_clicked()
-{
-    ui->light_auto_mode->setStyleSheet(mode_select);
-    ui->light_standby_mode->setStyleSheet(mode_deselect);
-    ui->light_clear->setStyleSheet(mode_deselect);
-    ui->light_ctl_mode->setStyleSheet(mode_deselect);
-    ui->light_manu_mode->setStyleSheet(mode_deselect);
-  transmission->Send_cmd(0x61,1);
-}
-
-void Widget::on_light_ctl_mode_clicked()
-{
-    ui->light_auto_mode->setStyleSheet(mode_deselect);
-    ui->light_standby_mode->setStyleSheet(mode_deselect);
-    ui->light_clear->setStyleSheet(mode_deselect);
-    ui->light_ctl_mode->setStyleSheet(mode_select);
-    ui->light_manu_mode->setStyleSheet(mode_deselect);
-     transmission->Send_cmd(0x61,2);
-}
-
-void Widget::on_light_manu_mode_clicked()
-{
-    ui->light_auto_mode->setStyleSheet(mode_deselect);
-    ui->light_standby_mode->setStyleSheet(mode_deselect);
-    ui->light_clear->setStyleSheet(mode_deselect);
-    ui->light_ctl_mode->setStyleSheet(mode_deselect);
-    ui->light_manu_mode->setStyleSheet(mode_select);
-     transmission->Send_cmd(0x61,3);
-}
-
-void Widget::on_light_clear_clicked()
-{
-    ui->light_auto_mode->setStyleSheet(mode_deselect);
-    ui->light_standby_mode->setStyleSheet(mode_deselect);
-    ui->light_clear->setStyleSheet(mode_select);
-    ui->light_ctl_mode->setStyleSheet(mode_deselect);
-    ui->light_manu_mode->setStyleSheet(mode_deselect);
-
-}
-
-void Widget::on_parking_standby_mode_clicked()
-{
-    ui->parking_auto_mode->setStyleSheet(mode_deselect);
-    ui->parking_clear->setStyleSheet(mode_deselect);
-    ui->parking_crl_mode->setStyleSheet(mode_deselect);
-    ui->parking_manu_mode->setStyleSheet(mode_deselect);
-    ui->parking_standby_mode->setStyleSheet(mode_select);
-     transmission->Send_cmd(0x51,0);
-}
-
-void Widget::on_parking_auto_mode_clicked()
-{
-    ui->parking_auto_mode->setStyleSheet(mode_select);
-    ui->parking_clear->setStyleSheet(mode_deselect);
-    ui->parking_crl_mode->setStyleSheet(mode_deselect);
-    ui->parking_manu_mode->setStyleSheet(mode_deselect);
-    ui->parking_standby_mode->setStyleSheet(mode_deselect);
-
-    transmission->Send_cmd(0x51,1);
-}
-
-void Widget::on_parking_crl_mode_clicked()
-{
-    ui->parking_auto_mode->setStyleSheet(mode_deselect);
-    ui->parking_clear->setStyleSheet(mode_deselect);
-    ui->parking_crl_mode->setStyleSheet(mode_select);
-    ui->parking_manu_mode->setStyleSheet(mode_deselect);
-    ui->parking_standby_mode->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x51,2);
-}
-
-void Widget::on_parking_manu_mode_clicked()
-{
-    ui->parking_auto_mode->setStyleSheet(mode_deselect);
-    ui->parking_clear->setStyleSheet(mode_deselect);
-    ui->parking_crl_mode->setStyleSheet(mode_deselect);
-    ui->parking_manu_mode->setStyleSheet(mode_select);
-    ui->parking_standby_mode->setStyleSheet(mode_deselect);
-    transmission->Send_cmd(0x51,3);
-}
-
-void Widget::on_parking_clear_clicked()
-{
-    ui->parking_auto_mode->setStyleSheet(mode_deselect);
-    ui->parking_clear->setStyleSheet(mode_select);
-    ui->parking_crl_mode->setStyleSheet(mode_deselect);
-    ui->parking_manu_mode->setStyleSheet(mode_deselect);
-    ui->parking_standby_mode->setStyleSheet(mode_deselect);
-
-}
 
 void Widget::on_StartOrStopButton_5_clicked()
 {
@@ -807,15 +555,15 @@ void Widget::on_StartOrStopButton_5_clicked()
              ui->DataBitsBox_5->setEnabled(false);
              ui->PortNumber_5->setEnabled(false);
              ui->StartOrStopButton_5->setText(tr("关闭串口"));
-
-
     }
     else
     {
-         transmission->Close_Serial();
-         transmission->serial_stata = 0;
+        transmission->Close_Serial();
+        transmission->serial_stata = 0;
 
         enable_button(false);
+        memset(&transmission->feedbackdata,0,sizeof (transmission->feedbackdata));
+        transmission->feedbackdata.error_code = 0xFFFF;
 
         ui->baudBox_5->setEnabled(true);
         ui->StopBitsBox_5->setEnabled(true);
@@ -828,62 +576,61 @@ void Widget::on_StartOrStopButton_5_clicked()
 
 void Widget::on_set_grear_parking_clicked()
 {
-    ui->set_gear_forward->setStyleSheet(close_button_style);
-    ui->set_gear_low->setStyleSheet(close_button_style);
-    ui->set_gear_neutral->setStyleSheet(close_button_style);
-    ui->set_grear_parking->setStyleSheet(open_button_style);
-    ui->set_grear_reverse->setStyleSheet(close_button_style);
+    ui->set_gear_forward->setStyleSheet(open_button_style);
+    ui->set_gear_low->setStyleSheet(open_button_style);
+    ui->set_gear_neutral->setStyleSheet(open_button_style);
+    ui->set_grear_parking->setStyleSheet(close_button_style);
+    ui->set_grear_reverse->setStyleSheet(open_button_style);
     transmission->Send_cmd(0x42,1);
 }
 
 void Widget::on_set_grear_reverse_clicked()
 {
-    ui->set_gear_forward->setStyleSheet(close_button_style);
-    ui->set_gear_low->setStyleSheet(close_button_style);
-    ui->set_gear_neutral->setStyleSheet(close_button_style);
-    ui->set_grear_parking->setStyleSheet(close_button_style);
-    ui->set_grear_reverse->setStyleSheet(open_button_style);
+    ui->set_gear_forward->setStyleSheet(open_button_style);
+    ui->set_gear_low->setStyleSheet(open_button_style);
+    ui->set_gear_neutral->setStyleSheet(open_button_style);
+    ui->set_grear_parking->setStyleSheet(open_button_style);
+    ui->set_grear_reverse->setStyleSheet(close_button_style);
     transmission->Send_cmd(0x42,2);
 }
 
 void Widget::on_set_gear_neutral_clicked()
 {
-    ui->set_gear_forward->setStyleSheet(close_button_style);
-    ui->set_gear_low->setStyleSheet(close_button_style);
-    ui->set_gear_neutral->setStyleSheet(open_button_style);
-    ui->set_grear_parking->setStyleSheet(close_button_style);
-    ui->set_grear_reverse->setStyleSheet(close_button_style);
+    ui->set_gear_forward->setStyleSheet(open_button_style);
+    ui->set_gear_low->setStyleSheet(open_button_style);
+    ui->set_gear_neutral->setStyleSheet(close_button_style);
+    ui->set_grear_parking->setStyleSheet(open_button_style);
+    ui->set_grear_reverse->setStyleSheet(open_button_style);
     transmission->Send_cmd(0x42,3);
 }
 
 void Widget::on_set_gear_forward_clicked()
 {
-    ui->set_gear_forward->setStyleSheet(open_button_style);
-    ui->set_gear_low->setStyleSheet(close_button_style);
-    ui->set_gear_neutral->setStyleSheet(close_button_style);
-    ui->set_grear_parking->setStyleSheet(close_button_style);
-    ui->set_grear_reverse->setStyleSheet(close_button_style);
+    ui->set_gear_forward->setStyleSheet(close_button_style);
+    ui->set_gear_low->setStyleSheet(open_button_style);
+    ui->set_gear_neutral->setStyleSheet(open_button_style);
+    ui->set_grear_parking->setStyleSheet(open_button_style);
+    ui->set_grear_reverse->setStyleSheet(open_button_style);
     transmission->Send_cmd(0x42,4);
 }
 
 void Widget::on_set_gear_low_clicked()
 {
-    ui->set_gear_forward->setStyleSheet(close_button_style);
-    ui->set_gear_low->setStyleSheet(open_button_style);
-    ui->set_gear_neutral->setStyleSheet(close_button_style);
-    ui->set_grear_parking->setStyleSheet(close_button_style);
-    ui->set_grear_reverse->setStyleSheet(close_button_style);
+    ui->set_gear_forward->setStyleSheet(open_button_style);
+    ui->set_gear_low->setStyleSheet(close_button_style);
+    ui->set_gear_neutral->setStyleSheet(open_button_style);
+    ui->set_grear_parking->setStyleSheet(open_button_style);
+    ui->set_grear_reverse->setStyleSheet(open_button_style);
     transmission->Send_cmd(0x42,5);
 }
 
 void Widget::on_gear_clear_clicked()
 {
-    ui->set_gear_forward->setStyleSheet(close_button_style);
-    ui->set_gear_low->setStyleSheet(close_button_style);
-    ui->set_gear_neutral->setStyleSheet(close_button_style);
-    ui->set_grear_parking->setStyleSheet(close_button_style);
-    ui->set_grear_reverse->setStyleSheet(close_button_style);
-    ui->gear_clear->setStyleSheet(close_button_style);
+    ui->set_gear_forward->setStyleSheet(open_button_style);
+    ui->set_gear_low->setStyleSheet(open_button_style);
+    ui->set_gear_neutral->setStyleSheet(open_button_style);
+    ui->set_grear_parking->setStyleSheet(open_button_style);
+    ui->set_grear_reverse->setStyleSheet(open_button_style);
     transmission->Send_cmd(0x42,0);
 }
 
@@ -928,20 +675,20 @@ void Widget::on_set_open_low_beam_light_clicked()
 
 void Widget::on_set_open_front_fog_light_clicked()
 {
-    if(ui->set_open_front_fog_light->text() == tr("打开前雾灯"))
-     {
-           light_crl_bits |= (1<<5);
-           ui->set_open_front_fog_light->setText(tr("关闭前雾灯"));
-           ui->set_open_front_fog_light->setStyleSheet(close_button_style);
-     }
-    else
-    {
-        light_crl_bits &= ~(1<<5);
-        ui->set_open_front_fog_light->setText(tr("打开前雾灯"));
-        ui->set_open_front_fog_light->setStyleSheet(open_button_style);
-    }
-     qDebug() << "Light_crt_bits="<<light_crl_bits;
-    transmission->Send_cmd(0x62,light_crl_bits);
+//    if(ui->set_open_front_fog_light->text() == tr("打开前雾灯"))
+//     {
+//           light_crl_bits |= (1<<5);
+//           ui->set_open_front_fog_light->setText(tr("关闭前雾灯"));
+//           ui->set_open_front_fog_light->setStyleSheet(close_button_style);
+//     }
+//    else
+//    {
+//        light_crl_bits &= ~(1<<5);
+//        ui->set_open_front_fog_light->setText(tr("打开前雾灯"));
+//        ui->set_open_front_fog_light->setStyleSheet(open_button_style);
+//    }
+//     qDebug() << "Light_crt_bits="<<light_crl_bits;
+//    transmission->Send_cmd(0x62,light_crl_bits);
 }
 
 void Widget::on_set_open_warning_light_clicked()
@@ -1033,8 +780,8 @@ void Widget::on_set_close_all_lights_clicked()
     ui->set_open_warning_light->setText(tr("打开警示灯"));
     ui->set_open_warning_light->setStyleSheet(open_button_style);
 
-    ui->set_open_front_fog_light->setText(tr("打开前雾灯"));
-    ui->set_open_front_fog_light->setStyleSheet(open_button_style);
+//    ui->set_open_front_fog_light->setText(tr("打开前雾灯"));
+//    ui->set_open_front_fog_light->setStyleSheet(open_button_style);
 
     ui->set_open_rear_fog_light->setText(tr("打开后雾灯"));
     ui->set_open_rear_fog_light->setStyleSheet(open_button_style);
@@ -1351,36 +1098,30 @@ void Widget::CheckConnectStatus()
 
 void Widget::on_set_all_ennter_auto_clicked()
 {
-    set_steering_mode_style_sheet(mode_deselect,mode_select,mode_deselect,mode_deselect,mode_deselect);
-    set_accel_mode_style_sheet(mode_deselect,mode_select,mode_deselect,mode_deselect,mode_deselect);
-    set_brake_mode_style_sheet(mode_deselect,mode_select,mode_deselect,mode_deselect,mode_deselect);
-    set_gear_mode_style_sheet(mode_deselect,mode_select,mode_deselect,mode_deselect,mode_deselect);
-    set_light_mode_style_sheet(mode_deselect,mode_select,mode_deselect,mode_deselect,mode_deselect);
-    set_parking_mode_style_sheet(mode_deselect,mode_select,mode_deselect,mode_deselect,mode_deselect);
+    AccordingFeedbackSetRadioMode(1,LightModule_e);
+    AccordingFeedbackSetRadioMode(1,GearModule_e);
+    AccordingFeedbackSetRadioMode(1,ParkingingMoudule_e);
+    AccordingFeedbackSetRadioMode(1,BrakingMoudule_e);
+    AccordingFeedbackSetRadioMode(1,DrivingMoudule_e);
+    AccordingFeedbackSetRadioMode(1,SteeringMoudule_e);
 
     transmission->Send_cmd(0x61,4);
-
 }
 
 void Widget::on_set_all_clear_manu_error_clicked()
 {
-   set_steering_mode_style_sheet(mode_deselect,mode_deselect,mode_deselect,mode_select,mode_deselect);
-   set_accel_mode_style_sheet(mode_deselect,mode_deselect,mode_deselect,mode_select,mode_deselect);
-   set_brake_mode_style_sheet(mode_deselect,mode_deselect,mode_deselect,mode_select,mode_deselect);
-   set_gear_mode_style_sheet(mode_deselect,mode_deselect,mode_deselect,mode_select,mode_deselect);
-   set_light_mode_style_sheet(mode_deselect,mode_deselect,mode_deselect,mode_select,mode_deselect);
-   set_parking_mode_style_sheet(mode_deselect,mode_deselect,mode_deselect,mode_select,mode_deselect);
+
+    AccordingFeedbackSetRadioMode(3,LightModule_e);
+    AccordingFeedbackSetRadioMode(3,GearModule_e);
+    AccordingFeedbackSetRadioMode(3,ParkingingMoudule_e);
+    AccordingFeedbackSetRadioMode(3,BrakingMoudule_e);
+    AccordingFeedbackSetRadioMode(3,DrivingMoudule_e);
+    AccordingFeedbackSetRadioMode(3,SteeringMoudule_e);
     transmission->Send_cmd(0x51,4);
 }
 
 void Widget::on_set_all_enter_mode2_clicked()
 {
-    set_steering_mode_style_sheet(mode_deselect,mode_deselect,mode_select,mode_deselect,mode_deselect);
-    set_accel_mode_style_sheet(mode_deselect,mode_deselect,mode_select,mode_deselect,mode_deselect);
-    set_brake_mode_style_sheet(mode_deselect,mode_deselect,mode_select,mode_deselect,mode_deselect);
-    set_gear_mode_style_sheet(mode_deselect,mode_deselect,mode_select,mode_deselect,mode_deselect);
-    set_light_mode_style_sheet(mode_deselect,mode_deselect,mode_select,mode_deselect,mode_deselect);
-    set_parking_mode_style_sheet(mode_deselect,mode_deselect,mode_select,mode_deselect,mode_deselect);
     transmission->Send_cmd(0x11,2);
     Sleep(10);
     transmission->Send_cmd(0x21,2);
@@ -1391,20 +1132,261 @@ void Widget::on_set_all_enter_mode2_clicked()
      Sleep(10);
     transmission->Send_cmd(0x51,2);
      Sleep(10);
-     transmission->Send_cmd(0x61,2);
+    transmission->Send_cmd(0x61,2);
+
+     AccordingFeedbackSetRadioMode(2,LightModule_e);
+     AccordingFeedbackSetRadioMode(2,GearModule_e);
+     AccordingFeedbackSetRadioMode(2,ParkingingMoudule_e);
+     AccordingFeedbackSetRadioMode(2,BrakingMoudule_e);
+     AccordingFeedbackSetRadioMode(2,DrivingMoudule_e);
+     AccordingFeedbackSetRadioMode(2,SteeringMoudule_e);
 }
 
 
-void Widget::DrivingModeChange(QAbstractButton* btn)
+void Widget::SteeringModeChange(QAbstractButton* btn)
 {
     // 遍历按钮，获取选中状态
      QList<QAbstractButton*> list = steering_mode_btn_grp->buttons();
      foreach (QAbstractButton *pButton, list)
      {
-         QString strStatus = pButton->isChecked() ? "Checked" : "Unchecked";
-         qDebug() << QString("Button : %1 is %2").arg(pButton->text()).arg(strStatus);
+         if(pButton->isChecked())
+           {
+               if(strcmp(pButton->text().toUtf8(),"待机模式") == 0)
+               {
+                    transmission->Send_cmd(0x11,0);
+                    qDebug() << "steering standby mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"自动驾驶模式") == 0)
+               {
+                   transmission->Send_cmd(0x11,1);
+                   qDebug() << "steering auto driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"手动模式") == 0)
+               {
+                   transmission->Send_cmd(0x11,2);
+                   qDebug() << "steering manu driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"人工介入恢复模式") == 0)
+               {
+                   transmission->Send_cmd(0x11,3);
+                   qDebug() << "steering manu recovery mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"清除故障模式") == 0)
+               {
+                   transmission->Send_cmd(0x11,4);
+                   qDebug() << "steering clear error mode";
+               }
+               else
+               {
+                    qDebug() << "button choice is error";
+               }
+           }
      }
+}
 
+void Widget::DrivingModeChange(QAbstractButton *)
+{
+    // 遍历按钮，获取选中状态
+     QList<QAbstractButton*> list = driving_mode_btn_grp->buttons();
+     foreach (QAbstractButton *pButton, list)
+     {
+         if(pButton->isChecked())
+           {
+               if(strcmp(pButton->text().toUtf8(),"待机模式") == 0)
+               {
+                    transmission->Send_cmd(0x21,0);
+                    qDebug() << "driving standby mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"自动驾驶模式") == 0)
+               {
+                   transmission->Send_cmd(0x21,1);
+                   qDebug() << "driving auto driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"手动模式") == 0)
+               {
+                   transmission->Send_cmd(0x21,2);
+                   qDebug() << "driving manu driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"人工介入恢复模式") == 0)
+               {
+                   transmission->Send_cmd(0x21,3);
+                   qDebug() << "driving manu recovery mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"清除故障模式") == 0)
+               {
+                   transmission->Send_cmd(0x21,4);
+                   qDebug() << "driving clear error mode";
+               }
+               else
+               {
+                    qDebug() << "button choice is error";
+               }
+           }
+     }
+}
+
+void Widget::BrakingModeChange(QAbstractButton *)
+{
+    // 遍历按钮，获取选中状态
+     QList<QAbstractButton*> list = braking_mode_btn_grp->buttons();
+     foreach (QAbstractButton *pButton, list)
+     {
+         if(pButton->isChecked())
+           {
+               if(strcmp(pButton->text().toUtf8(),"待机模式") == 0)
+               {
+                    transmission->Send_cmd(0x31,0);
+                    qDebug() << "Braking standby mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"自动驾驶模式") == 0)
+               {
+                   transmission->Send_cmd(0x31,1);
+                   qDebug() << "Braking auto driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"手动模式") == 0)
+               {
+                   transmission->Send_cmd(0x31,2);
+                   qDebug() << "Braking manu driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"人工介入恢复模式") == 0)
+               {
+                   transmission->Send_cmd(0x31,3);
+                   qDebug() << "Braking manu recovery mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"清除故障模式") == 0)
+               {
+                   transmission->Send_cmd(0x31,4);
+                   qDebug() << "Braking clear error mode";
+               }
+               else
+               {
+                    qDebug() << "button choice is error";
+               }
+           }
+     }
+}
+
+void Widget::LightModeChange(QAbstractButton *)
+{
+    // 遍历按钮，获取选中状态
+     QList<QAbstractButton*> list = lighting_mode_btn_grp->buttons();
+     foreach (QAbstractButton *pButton, list)
+     {
+         if(pButton->isChecked())
+           {
+               if(strcmp(pButton->text().toUtf8(),"待机模式") == 0)
+               {
+                    transmission->Send_cmd(0x61,0);
+                    qDebug() << "Light standby mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"自动驾驶模式") == 0)
+               {
+                   transmission->Send_cmd(0x61,1);
+                   qDebug() << "Light auto driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"手动模式") == 0)
+               {
+                   transmission->Send_cmd(0x61,2);
+                   qDebug() << "Light manu driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"人工介入恢复模式") == 0)
+               {
+                   transmission->Send_cmd(0x61,3);
+                   qDebug() << "Light manu recovery mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"清除故障模式") == 0)
+               {
+                   transmission->Send_cmd(0x61,4);
+                   qDebug() << "Light clear error mode";
+               }
+               else
+               {
+                    qDebug() << "button choice is error";
+               }
+           }
+     }
+}
+
+void Widget::ParkingModeChange(QAbstractButton *)
+{
+    // 遍历按钮，获取选中状态
+     QList<QAbstractButton*> list = parking_mode_btn_grp->buttons();
+     foreach (QAbstractButton *pButton, list)
+     {
+         if(pButton->isChecked())
+           {
+               if(strcmp(pButton->text().toUtf8(),"待机模式") == 0)
+               {
+                    transmission->Send_cmd(0x51,0);
+                    qDebug() << "Parking standby mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"自动驾驶模式") == 0)
+               {
+                   transmission->Send_cmd(0x51,1);
+                   qDebug() << "Parking auto driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"手动模式") == 0)
+               {
+                   transmission->Send_cmd(0x51,2);
+                   qDebug() << "Parking manu driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"人工介入恢复模式") == 0)
+               {
+                   transmission->Send_cmd(0x51,3);
+                   qDebug() << "Parking manu recovery mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"清除故障模式") == 0)
+               {
+                   transmission->Send_cmd(0x51,4);
+                   qDebug() << "Parking clear error mode";
+               }
+               else
+               {
+                    qDebug() << "button choice is error";
+               }
+           }
+     }
+}
+
+void Widget::GearModeChange(QAbstractButton *)
+{
+    // 遍历按钮，获取选中状态
+     QList<QAbstractButton*> list = gear_mode_btn_grp->buttons();
+     foreach (QAbstractButton *pButton, list)
+     {
+         if(pButton->isChecked())
+           {
+               if(strcmp(pButton->text().toUtf8(),"待机模式") == 0)
+               {
+                    transmission->Send_cmd(0x41,0);
+                    qDebug() << "Gear standby mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"自动驾驶模式") == 0)
+               {
+                   transmission->Send_cmd(0x41,1);
+                   qDebug() << "Gear auto driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"手动模式") == 0)
+               {
+                   transmission->Send_cmd(0x41,2);
+                   qDebug() << "Gear manu driver mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"人工介入恢复模式") == 0)
+               {
+                   transmission->Send_cmd(0x41,3);
+                   qDebug() << "Gear manu recovery mode";
+               }
+               else if(strcmp(pButton->text().toUtf8(),"清除故障模式") == 0)
+               {
+                   transmission->Send_cmd(0x41,4);
+                   qDebug() << "Gear clear error mode";
+               }
+               else
+               {
+                    qDebug() << "button choice is error";
+               }
+           }
+     }
 }
 
 void Widget::on_horntest_clicked()
@@ -1416,4 +1398,323 @@ void Widget::on_horntest_clicked()
     light_crl_bits &= ~(1<<5);
     qDebug() << "Light_crt_bits="<<light_crl_bits;
     transmission->Send_cmd(0x62,light_crl_bits);
+}
+
+void Widget::AccordingFeedbackSetRadioMode(uint8_t mode,uint8_t module)
+{
+    switch (module) {
+    case SteeringMoudule_e:
+        switch (mode) {
+        case 0:
+            ui->steering_standby_mode_radio_btn->setChecked(true);
+            break;
+        case 1:
+            ui->steering_auto_mode_radio_Btn->setChecked(true);
+            break;
+        case 2:
+            ui->steering_eps_mode_radio_btn->setChecked(true);
+            break;
+        case 3:
+            ui->steering_manu_recovery_mode_radio_btn->setChecked(true);
+            break;
+        case 4:
+            ui->steering_auto_test_mode_radio_btn->setChecked(true);
+            break;
+        default:
+           ui->steering_standby_mode_radio_btn->setChecked(false);
+           ui->steering_auto_mode_radio_Btn->setChecked(false);
+           ui->steering_eps_mode_radio_btn->setChecked(false);
+           ui->steering_manu_recovery_mode_radio_btn->setChecked(false);
+           ui->steering_auto_test_mode_radio_btn->setChecked(false);
+           break;
+        }
+        break;
+    case DrivingMoudule_e:
+        switch (mode) {
+        case 0:
+            ui->driving_standby_mode_radio_btn_2->setChecked(true);
+            break;
+        case 1:
+            ui->driving_auto_mode_radio_Btn_2->setChecked(true);
+            break;
+        case 2:
+            ui->driving_ecu_mode_radio_btn->setChecked(true);
+            break;
+        case 3:
+            ui->driving_manu_recovery_mode_radio_btn->setChecked(true);
+            break;
+        case 4:
+            ui->driving_auto_test_mode_radio_btn->setChecked(true);
+            break;
+        default:
+           ui->driving_standby_mode_radio_btn_2->setChecked(false);
+           ui->driving_auto_mode_radio_Btn_2->setChecked(false);
+           ui->driving_ecu_mode_radio_btn->setChecked(false);
+           ui->driving_manu_recovery_mode_radio_btn->setChecked(false);
+           ui->driving_auto_test_mode_radio_btn->setChecked(false);
+           break;
+        }
+        break;
+    case BrakingMoudule_e:
+        switch (mode) {
+        case 0:
+            ui->braking_standby_mode_radio_btn_2->setChecked(true);
+            break;
+        case 1:
+            ui->braking_auto_mode_radio_Btn_2->setChecked(true);
+            break;
+        case 2:
+            ui->braking_eps_mode_radio_btn_2->setChecked(true);
+            break;
+        case 3:
+            ui->braking_manu_recovery_mode_radio_btn_2->setChecked(true);
+            break;
+        case 4:
+            ui->braking_auto_test_mode_radio_btn_2->setChecked(true);
+            break;
+        default:
+           ui->braking_standby_mode_radio_btn_2->setChecked(false);
+           ui->braking_auto_mode_radio_Btn_2->setChecked(false);
+           ui->braking_eps_mode_radio_btn_2->setChecked(false);
+           ui->braking_manu_recovery_mode_radio_btn_2->setChecked(false);
+           ui->braking_auto_test_mode_radio_btn_2->setChecked(false);
+           break;
+        }
+        break;
+    case ParkingingMoudule_e:
+        switch (mode) {
+        case 0:
+            ui->parking_standby_mode_radio_btn_4->setChecked(true);
+            break;
+        case 1:
+            ui->parking_auto_mode_radio_Btn_4->setChecked(true);
+            break;
+        case 2:
+            ui->parking_eps_mode_radio_btn_4->setChecked(true);
+            break;
+        case 3:
+            ui->parking_manu_recovery_mode_radio_btn_4->setChecked(true);
+            break;
+        case 4:
+            ui->parking_auto_test_mode_radio_btn_4->setChecked(true);
+            break;
+        default:
+           ui->parking_standby_mode_radio_btn_4->setChecked(false);
+           ui->parking_auto_mode_radio_Btn_4->setChecked(false);
+           ui->parking_manu_recovery_mode_radio_btn_4->setChecked(false);
+           ui->parking_eps_mode_radio_btn_4->setChecked(false);
+           ui->parking_auto_test_mode_radio_btn_4->setChecked(false);
+           break;
+        }
+        break;
+    case LightModule_e:
+        switch (mode) {
+        case 0:
+            ui->light_standby_mode_radio_btn_3->setChecked(true);
+            break;
+        case 1:
+            ui->light_auto_mode_radio_Btn_3->setChecked(true);
+            break;
+        case 2:
+            ui->light_eps_mode_radio_btn_3->setChecked(true);
+            break;
+        case 3:
+            ui->light_manu_recovery_mode_radio_btn_3->setChecked(true);
+            break;
+        case 4:
+            ui->light_auto_test_mode_radio_btn_3->setChecked(true);
+            break;
+        default:
+           ui->light_standby_mode_radio_btn_3->setChecked(false);
+           ui->light_auto_mode_radio_Btn_3->setChecked(false);
+           ui->light_manu_recovery_mode_radio_btn_3->setChecked(false);
+           ui->light_eps_mode_radio_btn_3->setChecked(false);
+           ui->light_auto_test_mode_radio_btn_3->setChecked(false);
+           break;
+        }
+        break;
+    case GearModule_e:
+        switch (mode) {
+        case 0:
+            ui->gear_standby_mode_radio_btn_3->setChecked(true);
+            break;
+        case 1:
+            ui->gear_auto_mode_radio_Btn_3->setChecked(true);
+            break;
+        case 2:
+            ui->gear_eps_mode_radio_btn_3->setChecked(true);
+            break;
+        case 3:
+            ui->gear_manu_recovery_mode_radio_btn_3->setChecked(true);
+            break;
+        case 4:
+            ui->gear_auto_test_mode_radio_btn_3->setChecked(true);
+            break;
+        default:
+           ui->gear_standby_mode_radio_btn_3->setChecked(false);
+           ui->gear_auto_mode_radio_Btn_3->setChecked(false);
+           ui->gear_manu_recovery_mode_radio_btn_3->setChecked(false);
+           ui->gear_eps_mode_radio_btn_3->setChecked(false);
+           ui->gear_auto_test_mode_radio_btn_3->setChecked(false);
+           break;
+        }
+        break;
+    }
+}
+
+bool key_w =  false;
+bool key_s = false;
+void Widget::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_W)
+    {
+       if(event->isAutoRepeat())
+           return;
+
+       if(transmission->feedbackdata.can_bus_status == 1 && key_ctrl_enable == true && transmission->connect_status == 1)
+       {
+           //油门和档位进入自动模式
+           Sleep(50);
+           transmission->Send_cmd(0x41,1);
+           Sleep(50);
+           transmission->Send_cmd(0x21,1);
+           ui->driving_auto_mode_radio_Btn_2->setChecked(true);
+           ui->gear_auto_mode_radio_Btn_3->setChecked(true);
+           //设置档位为前进挡
+           Sleep(50);
+           on_set_gear_forward_clicked();
+           //设置油门值为10%
+           accel_val = 10;
+           ui->accelerator_slider->setValue(accel_val);
+           ui->accelerator_edit->setText(QString::number(accel_val));
+           transmission->Send_cmd(0x22,accel_val);
+           qDebug() << "gear: 4"<<"throttle:" << accel_val;
+       }
+       qDebug() << "key_w press";
+    } else if(event->key() == Qt::Key_S)
+    {
+       if(event->isAutoRepeat())
+           return;
+       if(transmission->feedbackdata.can_bus_status == 1 && key_ctrl_enable == true && transmission->connect_status == 1)
+       {
+           //油门和档位进入自动模式
+           Sleep(50);
+           transmission->Send_cmd(0x41,1);
+           Sleep(50);
+           transmission->Send_cmd(0x21,1);
+           ui->driving_auto_mode_radio_Btn_2->setChecked(true);
+           ui->gear_auto_mode_radio_Btn_3->setChecked(true);
+           //设置档位为前进挡
+           Sleep(50);
+           on_set_grear_reverse_clicked();
+           //设置油门值为10%
+           Sleep(50);
+           DrivingModeChange((QAbstractButton *)driving_mode_btn_grp);
+           accel_val = 10;
+           ui->accelerator_slider->setValue(accel_val);
+           ui->accelerator_edit->setText(QString::number(accel_val));
+           transmission->Send_cmd(0x22,accel_val);
+
+          qDebug() << "gear: 2"<<"throttle:" << accel_val;
+       }
+       qDebug() << "key_s press";
+    }else  if(event->key() == Qt::Key_A)
+    {
+       if(event->isAutoRepeat())
+       {
+            qDebug() << "key_a press";
+       }
+
+    }else if(event->key() == Qt::Key_D)
+    {
+       if(event->isAutoRepeat())
+       {
+            qDebug() << "key_D press";
+       }
+
+    }
+}
+
+void Widget::keyReleaseEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_W)
+    {
+       if(event->isAutoRepeat())
+       {
+           return;
+       }
+
+       if(transmission->feedbackdata.can_bus_status == 1 && key_ctrl_enable == true && transmission->connect_status == 1)
+       {
+           //油门和档位进入手动模式
+           Sleep(50);
+           transmission->Send_cmd(0x41,2);
+           Sleep(50);
+           transmission->Send_cmd(0x21,2);
+           ui->driving_ecu_mode_radio_btn->setChecked(true);
+           ui->gear_eps_mode_radio_btn_3->setChecked(true);
+           //设置档位为空挡
+           Sleep(50);
+           on_set_gear_neutral_clicked();
+           Sleep(100);
+           accel_val = 0;
+           ui->accelerator_slider->setValue(accel_val);
+           ui->accelerator_edit->setText(QString::number(accel_val));
+           transmission->Send_cmd(0x22,accel_val);
+           qDebug() << "gear: 3"<<"throttle:" << accel_val;
+       }
+        qDebug() << "key_w release";
+    } else if(event->key() == Qt::Key_S)
+    {
+       if(event->isAutoRepeat())
+           return;
+       if(transmission->feedbackdata.can_bus_status == 1 && key_ctrl_enable == true && transmission->connect_status == 1)
+       {
+           //油门和档位进入手动模式
+           Sleep(50);
+           transmission->Send_cmd(0x41,2);
+           Sleep(50);
+           transmission->Send_cmd(0x21,2);
+           ui->driving_ecu_mode_radio_btn->setChecked(true);
+           ui->gear_eps_mode_radio_btn_3->setChecked(true);
+           //设置档位为空挡
+           on_set_gear_neutral_clicked();
+           Sleep(100);
+           accel_val = 0;
+           ui->accelerator_slider->setValue(accel_val);
+           ui->accelerator_edit->setText(QString::number(accel_val));
+           transmission->Send_cmd(0x22,accel_val);
+           qDebug() << "gear: 3"<<"throttle:" << accel_val;
+       }
+        qDebug() << "key_s release";
+    } else if(event->key() == Qt::Key_A)
+    {
+       if(event->isAutoRepeat())
+           return;
+
+         qDebug() << "key_a release";
+    }else if(event->key() == Qt::Key_D)
+    {
+       if(event->isAutoRepeat())
+           return;
+
+         qDebug() << "key_D release";
+    }
+}
+
+void Widget::on_keyCtrlEnable_btn_clicked()
+{
+    if(ui->keyCtrlEnable_btn->text() == "打开键盘控制")
+    {
+         ui->keyCtrlEnable_btn->setText("关闭键盘控制");
+         ui->keyCtrlEnable_btn->setStyleSheet(close_button_style);
+         key_ctrl_enable = true;
+         setFocus();
+    }
+    else
+    {
+         ui->keyCtrlEnable_btn->setText("打开键盘控制");
+         ui->keyCtrlEnable_btn->setStyleSheet(open_button_style);
+         key_ctrl_enable = false;
+    }
 }

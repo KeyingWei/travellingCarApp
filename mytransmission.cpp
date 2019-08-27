@@ -25,6 +25,8 @@ myTransmission::myTransmission()
 
    //初始化反馈变量
    memset(&feedbackdata,0,sizeof(feedbackdata));
+
+   feedbackdata.error_code = 0xFFFF;
 }
 
 
